@@ -53,3 +53,4 @@ Example of Basic Flow:
   The app fetches the nutritional data either from a local database or an API.
   The data is stored in SQLite (or Room), and the daily log is updated.
   The user can view a list of food items logged for the day with nutritional details.
+  
