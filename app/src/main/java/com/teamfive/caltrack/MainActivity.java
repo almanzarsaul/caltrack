@@ -10,6 +10,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.teamfive.caltrack.database.AppDatabase;
+import com.teamfive.caltrack.database.entities.Goals;
 import com.teamfive.caltrack.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
