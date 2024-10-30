@@ -4,6 +4,21 @@
     <string name="title_log">Log</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="edit_note">Edit Note</string>
+    <string name="default_calories">100 calories</string>
+    <string-array name="foods">
+        <item>Banana</item>
+        <item>Apple</item>
+        <item>Cabbage</item>
+    </string-array>
+
+    <string-array name="calories">
+        <item>100 calories</item>
+        <item>57 calories</item>
+        <item>72 calories</item>
+    </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="selectdate_addnote">Select a date to view or add a note</string>
+    <string name="foodImage_desc">Banana</string>
 </resources>
