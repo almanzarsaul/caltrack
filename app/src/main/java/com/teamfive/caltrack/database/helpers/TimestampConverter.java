@@ -3,7 +3,7 @@ package com.teamfive.caltrack.database.helpers;
 import androidx.room.TypeConverter;
 import java.util.Date;
 
-public class Converters {
+public class TimestampConverter {
 
     @TypeConverter
     public static Date fromTimestamp(Long value) {

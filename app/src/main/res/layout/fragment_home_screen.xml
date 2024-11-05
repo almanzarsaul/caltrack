@@ -1,0 +1,61 @@
+<!-- res/layout/fragment_home_screen.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <CalendarView
+        android:id="@+id/calendar_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:id="@+id/goals_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Daily Goals: "
+        android:textSize="18sp"
+        android:paddingBottom="8dp" />
+
+    <TextView
+        android:id="@+id/journal_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your Journal Entry"
+        android:textSize="16sp"
+        android:paddingTop="8dp" />
+
+    <EditText
+        android:id="@+id/journal_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Write your journal here"
+        android:layout_marginTop="8dp"
+        android:padding="8dp"
+        android:background="@android:drawable/editbox_background_normal" />
+
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save Journal"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Food Logs"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/food_logs_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="vertical" />
+
+</LinearLayout>

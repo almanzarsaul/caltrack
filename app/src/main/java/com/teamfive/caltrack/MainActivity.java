@@ -1,39 +1,75 @@
 package com.teamfive.caltrack;
 
 import android.os.Bundle;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+import androidx.lifecycle.Observer;
 
 import com.teamfive.caltrack.database.AppDatabase;
+import com.teamfive.caltrack.database.entities.DailyLog;
 import com.teamfive.caltrack.database.entities.Goals;
-import com.teamfive.caltrack.databinding.ActivityMainBinding;
+import com.teamfive.caltrack.repository.DailyLogsRepository;
+import com.teamfive.caltrack.database.repositories.GoalsRepository;
+import com.teamfive.caltrack.HomeScreenFragment;
+import com.teamfive.caltrack.ui.GoalSelectionFragment;
+
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ActivityMainBinding binding;
+    private GoalsRepository goalsRepository;
+    private DailyLogsRepository dailyLogsRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        goalsRepository = new GoalsRepository(getApplication());
+        dailyLogsRepository = new DailyLogsRepository(getApplication());
 
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(binding.navView, navController);
+        AppDatabase.getDatabaseWriteExecutor().execute(() -> {
+            Goals activeGoal = goalsRepository.getActiveGoal();
+
+            if (activeGoal == null) {
+                Log.d("MainActivity", "No active goal found, navigating to goal selection.");
+                // No active goal, navigate to Goal Selection Fragment
+                runOnUiThread(this::navigateToGoalSelection);
+
+            } else {
+                Log.d("MainActivity", "Active goal exists, proceeding with creating daily log.");
+                // Active goal exists, create a daily log for today and navigate to Home Screen
+                runOnUiThread(this::createDailyLogAndNavigateHome);
+            }
+
+        });
+
+
     }
 
+    private void navigateToGoalSelection() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new GoalSelectionFragment())
+                .commit();
+    }
+
+    private void createDailyLogAndNavigateHome() {
+        Date today = new Date();
+        dailyLogsRepository.getOrCreateDailyLog(today).observe(this, dailyLog -> {
+            if (dailyLog != null) {
+                Log.d("MainActivity", "Daily log created or retrieved for today.");
+                Log.d("MainActivity", dailyLog.toString());
+                navigateToHomeScreen();
+            } else {
+                Log.d("MainActivity", "There was an issue creating the daily log.");
+            }
+        });
+    }
+
+    private void navigateToHomeScreen() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new HomeScreenFragment())
+                .commit();
+    }
 }
