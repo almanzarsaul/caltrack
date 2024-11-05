@@ -19,6 +19,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.cardview.widget.CardView;
 
+import com.teamfive.caltrack.database.AppDatabase;
+import com.teamfive.caltrack.database.entities.Goals;
 import com.teamfive.caltrack.databinding.ActivityMainBinding;
 
 import java.util.HashMap;
