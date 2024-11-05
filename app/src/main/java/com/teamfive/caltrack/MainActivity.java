@@ -1,9 +1,16 @@
 package com.teamfive.caltrack;
 
+
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CalendarView;
+import android.widget.EditText;
+import android.widget.Toast;
 
 //import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 //import androidx.navigation.NavController;
 //import androidx.navigation.Navigation;
@@ -18,13 +25,24 @@ import android.widget.Toast;
 import java.util.HashMap;
 
 //import com.teamfive.caltrack.databinding.ActivityMainBinding;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+import androidx.cardview.widget.CardView;
+
+import com.teamfive.caltrack.database.AppDatabase;
+import com.teamfive.caltrack.database.entities.Goals;
+import com.teamfive.caltrack.databinding.ActivityMainBinding;
+
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
+      //private ActivityMainBinding binding;
 
-    //private ActivityMainBinding binding;
-
-    private String selectedDate;
-    private HashMap<String, String> notesMap;
+      private String selectedDate;
+      private HashMap<String, String> notesMap
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +93,25 @@ public class MainActivity extends AppCompatActivity {
         builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
 
         builder.show();
+
+
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.nav_host_fragment);
+
+        if (navHostFragment != null) {
+            NavController navController = navHostFragment.getNavController();
+
+            AppBarConfiguration appBarConfig = new AppBarConfiguration.Builder(
+                    R.id.navigation_home, R.id.navigation_log, R.id.navigation_notifications)
+                    .build();
+
+            NavigationUI.setupActionBarWithNavController(this, navController, appBarConfig);
+            NavigationUI.setupWithNavController(navView, navController);
+        }
     }
 
 }
+
+
+

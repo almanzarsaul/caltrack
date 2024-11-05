@@ -36,11 +36,16 @@ dependencies {
     implementation libs.appcompat
     implementation libs.material
     implementation libs.constraintlayout
-    implementation libs.lifecycle.livedata.ktx
-    implementation libs.lifecycle.viewmodel.ktx
+    implementation libs.androidx.lifecycle.viewmodel.ktx.v260 // or latest version
+    implementation libs.androidx.lifecycle.livedata.ktx.v260  // optional, if using LiveData
     implementation libs.navigation.fragment
     implementation libs.navigation.ui
+    implementation 'androidx.recyclerview:recyclerview:1.3.2'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation libs.room.common
+    implementation libs.room.runtime
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
+    annotationProcessor libs.room.compiler
 }
