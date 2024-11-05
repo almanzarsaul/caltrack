@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.home.HomeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <CalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp" />
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Note"
+                android:textColor="#DADADA"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                />
+            <ImageButton
+                android:id="@+id/editNoteButton"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@null"
+                android:layout_marginStart="4dp"
+                android:src="@drawable/baseline_edit_24" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/note_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This is sample note text"
+            />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Goals"
+            android:textColor="#DADADA"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <com.teamfive.caltrack.views.ProgressIndicatorView
+                android:id="@+id/calories_progress_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:indicatorTitle="Calories"
+                app:indicatorGoal="2000"
+                />
+
+            <com.teamfive.caltrack.views.ProgressIndicatorView
+                android:id="@+id/protein_progress_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:indicatorTitle="Protein"
+                app:indicatorGoal="600"
+                app:indicatorUnit="g"
+                />
+
+            <com.teamfive.caltrack.views.ProgressIndicatorView
+                android:id="@+id/carbs_progress_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:indicatorTitle="Carbohydrates"
+                app:indicatorGoal="1000"
+                app:indicatorUnit="g"
+                />
+
+            <com.teamfive.caltrack.views.ProgressIndicatorView
+                android:id="@+id/fat_progress_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:indicatorTitle="Fat"
+                app:indicatorGoal="400"
+                app:indicatorUnit="g"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Logs"
+            android:textColor="#DADADA"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/food_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            app:layoutManager="LinearLayoutManager"
+            tools:listitem="@layout/scan_items_list" />
+
+    </LinearLayout>
+</LinearLayout>
