@@ -13,9 +13,15 @@
 
     <fragment
         android:id="@+id/navigation_log"
-        android:name="com.teamfive.caltrack.LogOnFragment"
+        android:name="com.teamfive.caltrack.ui.dailylog.LogOnFragment"
         android:label="@string/title_log"
         tools:layout="@layout/fragment_log_on" />
+
+    <fragment
+        android:id="@+id/navigation_camera"
+        android:name="com.teamfive.caltrack.ui.dailylog.CameraFragment"
+        android:label="camera"
+        tools:layout="@layout/fragment_camera" />
 
 
 </navigation>

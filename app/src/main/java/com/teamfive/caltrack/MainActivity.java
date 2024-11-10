@@ -2,26 +2,17 @@ package com.teamfive.caltrack;
 
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.CalendarView;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.teamfive.caltrack.ui.dailylog.LogOnFragment;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.cardview.widget.CardView;
-
-import com.teamfive.caltrack.databinding.ActivityMainBinding;
-
-import java.util.HashMap;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -40,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
             NavController navController = navHostFragment.getNavController();
 
             AppBarConfiguration appBarConfig = new AppBarConfiguration.Builder(
-                    R.id.navigation_home, R.id.navigation_log, R.id.navigation_notifications)
+                    R.id.navigation_home, R.id.navigation_log, R.id.navigation_camera, R.id.navigation_notifications)
                     .build();
 
             NavigationUI.setupActionBarWithNavController(this, navController, appBarConfig);

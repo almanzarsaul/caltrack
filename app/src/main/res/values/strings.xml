@@ -21,4 +21,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="selectdate_addnote">Select a date to view or add a note</string>
     <string name="foodImage_desc">Banana</string>
+    <string name="scan_upc">Scan UPC</string>
+    <string name="enter_upc_code">Enter UPC Code</string>
+    <string name="log_on_t">Log Your Food</string>
+    <string name="scan_food_image">Scan Food Image</string>
+    <string name="add_to_log">Add to Log</string>
+    <string name="or">OR</string>
+    <string name="scan_item_icon">Scan_Item_Icon</string>
 </resources>
