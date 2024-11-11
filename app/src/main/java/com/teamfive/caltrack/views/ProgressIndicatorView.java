@@ -16,6 +16,7 @@ public class ProgressIndicatorView extends LinearLayout {
     private TextView goalValue;
 
     private TextView unitTextView;
+    private TextView currentValue;
 
     public ProgressIndicatorView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -29,6 +30,7 @@ public class ProgressIndicatorView extends LinearLayout {
         progressBar = findViewById(R.id.indicator_progress_bar);
         goalValue = findViewById(R.id.indicator_goal_value);
         unitTextView = findViewById(R.id.indicator_unit);
+        currentValue = findViewById(R.id.indicator_current_value);
 
         TypedArray attributes = context.getTheme().obtainStyledAttributes(attrs, R.styleable.ProgressIndicator, 0, 0);
 
@@ -45,5 +47,12 @@ public class ProgressIndicatorView extends LinearLayout {
         } finally {
             attributes.recycle();
         }
+    }
+
+    public void updateGoalUI(int totalCalories, int goalCalories) {
+        int progress = (int) (((double) totalCalories / goalCalories) * 100);
+        progressBar.setProgress(progress);
+        currentValue.setText(String.valueOf(totalCalories));
+        goalValue.setText(String.valueOf(goalCalories));
     }
 }

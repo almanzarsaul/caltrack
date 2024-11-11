@@ -1,21 +1,49 @@
-<?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/navigation_home">
+    app:startDestination="@id/navigation_loading">
+    <fragment
+        android:id="@+id/navigation_loading"
+        android:name="com.teamfive.caltrack.ui.loading.LoadingFragment"
+        />
 
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.teamfive.caltrack.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:label="Home"
+        >
+        <action
+            android:id="@+id/action_home_to_new_log"
+            app:destination="@id/navigation_new_log" />
+    </fragment>
 
     <fragment
-        android:id="@+id/navigation_log"
-        android:name="com.teamfive.caltrack.LogOnFragment"
-        android:label="@string/title_log"
-        tools:layout="@layout/fragment_log_on" />
+        android:id="@+id/navigation_settings"
+        android:name="com.teamfive.caltrack.ui.settings.SettingsFragment"
+        android:label="Settings" >
+        <action
+            android:id="@+id/action_settings_to_editGoal"
+            app:destination="@id/navigation_edit_goal" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_new_log"
+        android:name="com.teamfive.caltrack.ui.newlog.NewLogFragment"
+        android:label="New Food Log">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_edit_goal"
+        android:name="com.teamfive.caltrack.ui.goals.EditGoalFragment"
+        android:label="Edit Goal"
+        >
+        <argument
+            android:name="isSetupMode"
+            app:argType="boolean"
+            android:defaultValue="false" />
+    </fragment>
 
 
 </navigation>
