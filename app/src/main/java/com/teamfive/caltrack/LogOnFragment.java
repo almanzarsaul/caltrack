@@ -20,16 +20,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link LogOnFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class LogOnFragment extends Fragment {
 
     private EditText barcodeInput;
     private TextView productName;
     private TextView productCalories;
+    private TextView productFat;
+    private TextView productSodium;
     private Button fetchButton;
 
     @Override
@@ -39,8 +36,9 @@ public class LogOnFragment extends Fragment {
         barcodeInput = view.findViewById(R.id.barcode_input);
         productName = view.findViewById(R.id.product_name);
         productCalories = view.findViewById(R.id.product_calories);
+        productFat = view.findViewById(R.id.product_fat);
+        productSodium = view.findViewById(R.id.product_sodium);
         fetchButton = view.findViewById(R.id.fetch_button);
-
         fetchButton.setOnClickListener(v -> fetchProductInfo());
 
         return view;
@@ -90,22 +88,13 @@ public class LogOnFragment extends Fragment {
             Nutriments nutriments = productResponse.getProduct().getNutriments();
             if (nutriments != null) {
                 productCalories.setText("Calories: " + nutriments.getEnergy() + " kJ");
+                productFat.setText("Fat: " + nutriments.getFat() + " g");
+                productSodium.setText("Sodium: " + nutriments.getSodium() + " g");
             } else {
-                productCalories.setText("Calories: Not available");
+                productCalories.setText("Nutriments not available");
             }
         }
     }
-
-
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public LogOnFragment() {
         // Required empty public constructor
@@ -119,23 +108,6 @@ public class LogOnFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment LogOnFragment.
      */
-    // TODO: Rename and change types and number of parameters
-    public static LogOnFragment newInstance(String param1, String param2) {
-        LogOnFragment fragment = new LogOnFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 }
 
