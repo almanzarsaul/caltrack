@@ -35,4 +35,18 @@
         android:text="Calories: "
         android:textSize="18sp" />
 
+    <TextView
+        android:id="@+id/product_fat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fat: "
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/product_sodium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sodium: "
+        android:textSize="18sp" />
+
 </LinearLayout>
