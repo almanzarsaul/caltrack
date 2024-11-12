@@ -13,15 +13,38 @@
 
     <fragment
         android:id="@+id/navigation_log"
-        android:name="com.teamfive.caltrack.ui.dailylog.LogOnFragment"
+        android:name="com.teamfive.caltrack.ui.barcodescan.BarcodeScannerFragment"
         android:label="@string/title_log"
-        tools:layout="@layout/fragment_log_on" />
+        tools:layout="@layout/fragment_barcode_scanner">
+        <action
+            android:id="@+id/action_barcodeScannerFragment_to_resultFragment"
+            app:destination="@id/resultFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim">
+            <argument
+                android:name="upc_code"
+                app:argType="string" />
+
+        </action>
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_camera"
         android:name="com.teamfive.caltrack.ui.dailylog.CameraFragment"
         android:label="camera"
         tools:layout="@layout/fragment_camera" />
+
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.teamfive.caltrack.ui.barcodescan.ResultFragment"
+        android:label="result"
+        tools:layout="@layout/fragment_result">
+        <argument
+            android:name="upc_code"
+            app:argType="string" />
+    </fragment>
+
+
 
 
 </navigation>
