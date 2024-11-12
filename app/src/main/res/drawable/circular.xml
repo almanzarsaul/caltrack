@@ -5,7 +5,7 @@
         <shape
             android:innerRadiusRatio="6"
             android:shape="ring"
-            android:thicknessRatio="20.0"
+            android:thicknessRatio="10.0"
             android:useLevel="true">
 
 
@@ -27,7 +27,7 @@
             <shape
                 android:innerRadiusRatio="6"
                 android:shape="ring"
-                android:thicknessRatio="20.0"
+                android:thicknessRatio="10.0"
                 android:useLevel="true">
 
 

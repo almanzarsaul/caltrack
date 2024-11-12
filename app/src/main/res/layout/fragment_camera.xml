@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scanView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.camera.view.PreviewView
+        android:id="@+id/previewView"
+        android:layout_width="match_parent"
+        android:layout_height="424dp" />
+
+    <ImageButton
+        android:id="@+id/captureBtn"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/scan_icon"
+        android:contentDescription="scan image button" />
+
+    <TextView
+        android:id="@+id/scanned_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/captureBtn"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"/>
+
+    <Button
+        android:id="@+id/add_to_log_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_to_log"
+        android:layout_below="@id/scanned_item"
+        android:layout_marginTop="8dp"
+        android:gravity="center_horizontal"
+        android:visibility="gone" />
+
+
+</LinearLayout>

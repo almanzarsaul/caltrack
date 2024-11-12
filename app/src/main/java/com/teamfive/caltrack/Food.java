@@ -49,6 +49,7 @@ public class Food {
     public void setCalories(String calories) {
         this.mCalories = calories;
     }
+
     public int getImageResource(){
         return mImageResource;
     }

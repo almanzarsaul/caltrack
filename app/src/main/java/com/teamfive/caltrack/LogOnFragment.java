@@ -110,4 +110,3 @@ public class LogOnFragment extends Fragment {
      */
 
 }
-
