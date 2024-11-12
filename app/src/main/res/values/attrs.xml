@@ -1,0 +1,8 @@
+<resources>
+    <declare-styleable name="ProgressIndicator">
+        <attr name="indicatorTitle" format="string" />
+        <attr name="indicatorProgress" format="integer" />
+        <attr name="indicatorGoal" format="integer" />
+        <attr name="indicatorUnit" format="string" />
+    </declare-styleable>
+</resources>

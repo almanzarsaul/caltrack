@@ -1,9 +1,7 @@
 <resources>
     <string name="app_name">CalTrack</string>
     <string name="title_home">Home</string>
-    <string name="title_log">Log</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_settings">Settings</string>
     <string name="edit_note">Edit Note</string>
     <string name="default_calories">100 calories</string>
     <string-array name="foods">
@@ -21,11 +19,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="selectdate_addnote">Select a date to view or add a note</string>
     <string name="foodImage_desc">Banana</string>
-    <string name="scan_upc">Scan UPC</string>
-    <string name="enter_upc_code">Enter UPC Code</string>
-    <string name="log_on_t">Log Your Food</string>
-    <string name="scan_food_image">Scan Food Image</string>
-    <string name="add_to_log">Add to Log</string>
-    <string name="or">OR</string>
-    <string name="scan_item_icon">Scan_Item_Icon</string>
+    <string name="note_header">Note</string>
+    <string name="goals_header">Goals</string>
+    <string name="edit_goal_note">Your goal will be applied starting tomorrow.</string>
 </resources>

@@ -1,83 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<!-- res/layout/fragment_product_info.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/fragment_log"
-    android:padding="10dp">
-
-    <TextView
-        android:id="@+id/log_food_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/log_on_t"
-        android:textSize="24sp"
-        android:layout_centerHorizontal="true" />
-
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <EditText
-        android:id="@+id/upc_code_input"
+        android:id="@+id/barcode_input"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/log_food_title"
-        android:layout_marginTop="43dp"
-        android:hint="@string/enter_upc_code"
-        android:inputType="text|number" />
+        android:layout_height="wrap_content"
+        android:hint="Enter barcode"
+        android:inputType="number" />
 
     <Button
-        android:id="@+id/scan_upc_button"
+        android:id="@+id/fetch_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/upc_code_input"
-        android:layout_marginTop="34dp"
-        android:layout_centerHorizontal="true"
-        android:text="@string/scan_upc" />
+        android:text="Fetch Product Info" />
 
     <TextView
-
-        android:layout_width="wrap_content"
+        android:id="@+id/product_name"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/or"
-        android:textSize="24sp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/scan_upc_button"
-        android:layout_marginTop="80dp"/>
-
-    <ImageView
-        android:id="@+id/scanImg_image"
-        android:layout_width="83dp"
-        android:layout_height="63dp"
-        android:layout_below="@id/scan_upc_button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="225dp"
-        android:contentDescription="@string/scan_item_icon"
-        android:src="@drawable/camera_icon" />
-
-    <Button
-        android:id="@+id/scan_image_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/scanImg_image"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="34dp"
-        android:text="@string/scan_food_image" />
+        android:text="Product Name: "
+        android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/scanned_item"
-        android:layout_width="wrap_content"
+        android:id="@+id/product_calories"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/scan_image_button"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="16dp" />
+        android:text="Calories: "
+        android:textSize="18sp" />
 
-    <Button
-        android:id="@+id/add_to_log_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/add_to_log"
-        android:layout_below="@id/scanned_item"
-        android:layout_marginTop="8dp"
-        android:gravity="center_horizontal"
-        android:visibility="gone" />
-
-
-</RelativeLayout>
+</LinearLayout>

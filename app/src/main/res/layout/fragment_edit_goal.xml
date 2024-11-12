@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+    <!-- Calories Goal -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calories Goal (kcal)"
+        android:textSize="16sp"
+        android:paddingTop="8dp" />
+
+    <EditText
+        android:id="@+id/edit_goal_calories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="Enter calories goal"
+        android:padding="8dp"
+        android:backgroundTint="@color/gray" />
+
+    <!-- Carbohydrates Goal -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Carbohydrates Goal (g)"
+        android:textSize="16sp"
+        android:paddingTop="8dp" />
+
+    <EditText
+        android:id="@+id/edit_goal_carbs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="Enter carbs goal"
+        android:padding="8dp"
+        android:backgroundTint="@color/gray" />
+
+    <!-- Protein Goal -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Protein Goal (g)"
+        android:textSize="16sp"
+        android:paddingTop="8dp" />
+
+    <EditText
+        android:id="@+id/edit_goal_protein"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="Enter protein goal"
+        android:padding="8dp"
+        android:backgroundTint="@color/gray" />
+
+    <!-- Fats Goal -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fats Goal (g)"
+        android:textSize="16sp"
+        android:paddingTop="8dp" />
+
+    <EditText
+        android:id="@+id/edit_goal_fat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="Enter fats goal"
+        android:padding="8dp"
+        android:backgroundTint="@color/gray" />
+
+    <!-- Save Button -->
+    <Button
+        android:id="@+id/button_save_goal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save Goal"
+        android:layout_marginTop="16dp"
+        android:textColor="@android:color/white" />
+    <TextView
+        android:id="@+id/edit_goal_note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/edit_goal_note" />
+
+</LinearLayout>
