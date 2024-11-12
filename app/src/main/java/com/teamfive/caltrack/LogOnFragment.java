@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.teamfive.caltrack.network.OpenFoodFactsApi;
-import com.teamfive.caltrack.network.models.NutriscoreData;
+import com.teamfive.caltrack.network.models.Nutriments;
 import com.teamfive.caltrack.network.models.ProductResponse;
 
 import retrofit2.Call;
@@ -87,9 +87,9 @@ public class LogOnFragment extends Fragment {
         if (productResponse != null && productResponse.getProduct() != null) {
             productName.setText("Product Name: " + productResponse.getProduct().getName());
 
-            NutriscoreData nutriscoreData = productResponse.getProduct().getNutriscoreData();
-            if (nutriscoreData != null) {
-                productCalories.setText("Calories: " + nutriscoreData.getEnergy() + " kJ");
+            Nutriments nutriments = productResponse.getProduct().getNutriments();
+            if (nutriments != null) {
+                productCalories.setText("Calories: " + nutriments.getEnergy() + " kJ");
             } else {
                 productCalories.setText("Calories: Not available");
             }
