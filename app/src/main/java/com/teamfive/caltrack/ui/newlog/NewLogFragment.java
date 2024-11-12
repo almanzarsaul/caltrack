@@ -38,6 +38,12 @@ public class NewLogFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_new_log, container, false);
+        NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
+
+        Button scanBarcodeButton = view.findViewById(R.id.scan_barcode_button);
+        scanBarcodeButton.setOnClickListener(v -> {
+            navController.navigate(R.id.action_newLogFragment_to_scanner);
+        });
         Button saveLogButton = view.findViewById(R.id.save_button);
 
         // Initialize views
@@ -53,7 +59,6 @@ public class NewLogFragment extends Fragment {
             FoodLog foodLog = new FoodLog(foodNameInput.getText().toString(), Integer.parseInt(foodCaloriesInput.getText().toString()), Integer.parseInt(foodFatInput.getText().toString()), Integer.parseInt(foodCarbsInput.getText().toString()), Integer.parseInt(foodProteinInput.getText().toString()));
 
             foodLogRepository.insert(foodLog);
-            NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
 
             Toast.makeText(requireContext(), "Food log saved", Toast.LENGTH_SHORT).show();
             navController.navigateUp();

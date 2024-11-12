@@ -3,7 +3,6 @@ package com.teamfive.caltrack.ui.barcodescan;
 import android.annotation.SuppressLint;
 import android.media.Image;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +20,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.mlkit.vision.barcode.BarcodeScanner;
 import com.google.mlkit.vision.barcode.BarcodeScanning;
@@ -35,6 +35,7 @@ public class BarcodeScannerFragment extends Fragment {
     private PreviewView previewView;
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
     private BarcodeScanner barcodeScanner;
+    private BottomNavigationView navView;
 
     private boolean hasNavigated = false;
 
@@ -43,12 +44,19 @@ public class BarcodeScannerFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_barcode_scanner, container, false);
         previewView = view.findViewById(R.id.previewView);
+        // Hide bottom navigation in setup mode
+        navView = getActivity().findViewById(R.id.nav_view);
+        if (navView != null) {
+            navView.setVisibility(View.GONE);
+        }
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
 
         // Initialize the BarcodeScanner
         barcodeScanner = BarcodeScanning.getClient();
@@ -106,10 +114,10 @@ public class BarcodeScannerFragment extends Fragment {
         barcodeScanner.process(image)
                 .addOnSuccessListener(barcodes -> {
                     for (Barcode barcode : barcodes) {
-                        String rawValue = barcode.getRawValue();
                         int valueType = barcode.getValueType();
                         if (valueType == Barcode.TYPE_PRODUCT) {
                             String upc = barcode.getDisplayValue();
+                            navView.setVisibility(View.VISIBLE);
                             navigateToTargetFragment(upc);
                             hasNavigated = true;
                             break;
@@ -126,6 +134,13 @@ public class BarcodeScannerFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         barcodeScanner.close();
+        navView.setVisibility(View.VISIBLE); // Important!
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        hasNavigated = false; // Reset so it still works when it goes back
     }
 
     private void navigateToTargetFragment(String upc) {
