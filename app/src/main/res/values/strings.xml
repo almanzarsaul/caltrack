@@ -22,4 +22,13 @@
     <string name="note_header">Note</string>
     <string name="goals_header">Goals</string>
     <string name="edit_goal_note">Your goal will be applied starting tomorrow.</string>
+    <string name="add_to_log">Add to log</string>
+    <string name="add_manually">Add manually</string>
+    <string name="date">Date</string>
+    <string name="name_of_food">Name of food</string>
+    <string name="calories_kcal">Calories (kcal)</string>
+    <string name="protein_g">Protein (g)</string>
+    <string name="fat_g">Fat (g)</string>
+    <string name="save">Save</string>
+    <string name="carbohydrates_g">Carbohydrates (g)</string>
 </resources>

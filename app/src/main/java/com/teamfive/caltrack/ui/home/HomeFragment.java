@@ -75,6 +75,7 @@ public class HomeFragment extends Fragment {
         ImageButton editNoteButton = view.findViewById(R.id.editNoteButton);
         newFoodLogFAB = view.findViewById(R.id.new_log);
         newFoodLogFAB.setOnClickListener(v -> {
+
             DailyLog currentDailyLog = null;
             if (!dailyLogMap.isEmpty()) {
                 currentDailyLog = dailyLogMap.get(activeDate);
@@ -213,8 +214,8 @@ public class HomeFragment extends Fragment {
                 .min(LocalDate::compareTo)
                 .orElse(today);
         weekCalendarView.setup(earliestDate, today, DayOfWeek.SUNDAY);
-        weekCalendarView.scrollToWeek(earliestDate);
-        updateWeekTitle(earliestDate);
+        weekCalendarView.scrollToWeek(activeDate);
+        updateWeekTitle(activeDate);
     }
 
     private void updateUIForDate(LocalDate date) {

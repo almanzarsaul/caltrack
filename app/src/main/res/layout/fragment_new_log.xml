@@ -18,18 +18,19 @@
 
         >
         <Button
+            android:id="@+id/scan_barcode_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Scan barcode"
             android:layout_marginHorizontal="4dp"
             />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Scan food with AI"
-            android:layout_marginHorizontal="4dp"
-            />
+<!--        <Button-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Scan food with AI"-->
+<!--            android:layout_marginHorizontal="4dp"-->
+<!--            />-->
     </LinearLayout>
 
     <TextView
@@ -38,7 +39,7 @@
         android:gravity="center_horizontal"
         android:text="OR"
         android:layout_marginBottom="16dp"
-        />
+        tools:ignore="HardcodedText" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,12 +49,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/TextAppearance.MaterialComponents.Headline5"
-            android:text="Add manually"
+            android:text="@string/add_manually"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Date"
+            android:text="@string/date"
             />
         <EditText
             android:id="@+id/date_input"
@@ -65,7 +66,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name of food"
+            android:text="@string/name_of_food"
+            android:labelFor="@id/date_input"
             />
         <EditText
             android:id="@+id/food_name_input"
@@ -76,7 +78,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Calories (kcal)"
+            android:text="@string/calories_kcal"
+            android:labelFor="@id/food_calories_input"
             />
         <EditText
             android:id="@+id/food_calories_input"
@@ -88,7 +91,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Protein (g)"
+            android:text="@string/protein_g"
+            android:labelFor="@id/food_protein_input"
             />
         <EditText
             android:id="@+id/food_protein_input"
@@ -100,7 +104,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Carbohydrates (g)"
+            android:text="@string/carbohydrates_g"
+            android:labelFor="@id/food_carbs_input"
             />
         <EditText
             android:id="@+id/food_carbs_input"
@@ -112,8 +117,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fat (g)"
-            android:inputType="number"
+            android:text="@string/fat_g"
+            android:labelFor="@id/food_fat_input"
             />
         <EditText
             android:id="@+id/food_fat_input"
@@ -126,7 +131,7 @@
             android:id="@+id/save_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Save"
+            android:text="@string/save"
             />
     </LinearLayout>
 
