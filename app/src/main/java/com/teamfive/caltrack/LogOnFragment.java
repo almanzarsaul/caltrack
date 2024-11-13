@@ -31,7 +31,7 @@ public class LogOnFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_log_on, container, false);
+        View view = inflater.inflate(R.layout.fragment_result, container, false);
 
         barcodeInput = view.findViewById(R.id.barcode_input);
         productName = view.findViewById(R.id.product_name);
