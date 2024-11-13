@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.camerapermissiondenied.CameraPermissionDenied">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@drawable/undraw_camera"
+        />
+
+    <TextView
+        android:id="@+id/mainTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Camera permission denied"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        />
+    <TextView
+        android:id="@+id/subTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Please enable camera permissions to use the barcode scanner."
+        />
+
+    <Button
+        android:layout_marginTop="32dp"
+        android:id="@+id/system_settings_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Open system settings"
+        android:onClick="openAppSettings"
+        />
+
+    <Button
+        android:id="@+id/return_to_log_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00FFFFFF"
+        android:textColor="@color/green"
+        android:text="Return to log entry" />
+
+
+</LinearLayout>
