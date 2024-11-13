@@ -57,6 +57,11 @@
             android:id="@+id/action_barcodeScannerFragment_to_resultFragment"
             app:destination="@id/navigation_result"
             />
+        <action
+            android:id="@+id/action_currentFragment_to_targetFragment"
+            app:destination="@id/navigation_camera_permission_denied"
+            app:popUpTo="@id/navigation_scanner"
+            />
     </fragment>
 
     <fragment android:name="com.teamfive.caltrack.ui.barcodescan.ResultFragment"
@@ -66,6 +71,19 @@
         <argument
             android:name="upc_code"
             app:argType="string"
+            />
+    </fragment>
+
+    <fragment
+        android:name="com.teamfive.caltrack.ui.camerapermissiondenied.CameraPermissionDenied"
+        android:id="@+id/navigation_camera_permission_denied"
+        android:label="Camera Permission Denied">
+
+        <action
+            android:id="@+id/action_cameraPermissionDenied_to_Home"
+            app:destination="@id/navigation_home"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/navigation_new_log"
             />
     </fragment>
 

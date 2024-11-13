@@ -31,4 +31,5 @@
     <string name="fat_g">Fat (g)</string>
     <string name="save">Save</string>
     <string name="carbohydrates_g">Carbohydrates (g)</string>
+    <string name="scan_barcode">Scan barcode</string>
 </resources>
