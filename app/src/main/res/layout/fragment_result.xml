@@ -15,6 +15,13 @@
         android:hint="Enter barcode"
         android:inputType="number" />
 
+    <EditText
+        android:id="@+id/serving_size"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter serving size"
+        android:inputType="number" />
+
     <Button
         android:id="@+id/fetch_button"
         android:layout_width="wrap_content"
@@ -43,10 +50,10 @@
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/product_sodium"
+        android:id="@+id/product_protein"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sodium: "
+        android:text="Protein: "
         android:textSize="18sp" />
 
 </LinearLayout>

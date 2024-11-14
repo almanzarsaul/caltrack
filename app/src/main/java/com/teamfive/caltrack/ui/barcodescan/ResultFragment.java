@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,8 +16,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
 
 import com.teamfive.caltrack.network.OpenFoodFactsApi;
 import com.teamfive.caltrack.network.models.Nutriments;
@@ -29,13 +26,13 @@ import com.teamfive.caltrack.R;
 public class ResultFragment extends Fragment {
 
     //change below back to upcCode when done testing
-    private String upcCode = "3017620422003";
+    private String upcCode;
 
     private TextView barcodeInput;
     private TextView productName;
     private TextView productCalories;
     private TextView productFat;
-    private TextView productSodium;
+    private TextView productProtein;
     private Button fetchButton;
 
     private TextView textTextEdit;
@@ -56,11 +53,10 @@ public class ResultFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_result, container, false);
 
         textTextEdit = view.findViewById(R.id.barcode_input);
-        //barcodeInput = view.findViewById(R.id.barcode_input);
         productName = view.findViewById(R.id.product_name);
         productCalories = view.findViewById(R.id.product_calories);
         productFat = view.findViewById(R.id.product_fat);
-        productSodium = view.findViewById(R.id.product_sodium);
+        productProtein = view.findViewById(R.id.product_protein);
         fetchButton = view.findViewById(R.id.fetch_button);
         fetchButton.setOnClickListener(v -> fetchProductInfo());
 
@@ -76,8 +72,7 @@ public class ResultFragment extends Fragment {
     }
 
     private void fetchProductInfo() {
-        String barcode = "3017620422003";
-                //barcodeInput.getText().toString();
+        String barcode = textTextEdit.getText().toString();
         if (!barcode.isEmpty()) {
             fetchFromApi(barcode);
         } else {
@@ -121,7 +116,7 @@ public class ResultFragment extends Fragment {
             if (nutriments != null) {
                 productCalories.setText("Calories: " + nutriments.getEnergy() + " kJ");
                 productFat.setText("Fat: " + nutriments.getFat() + " g");
-                productSodium.setText("Sodium: " + nutriments.getSodium() + " g");
+                productProtein.setText("Protein: " + nutriments.getProtein() + " g");
             } else {
                 productCalories.setText("Nutriments not available");
             }

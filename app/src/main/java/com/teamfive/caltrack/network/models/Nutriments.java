@@ -10,8 +10,8 @@ public class Nutriments {
     @SerializedName("fat")
     private float fat;
 
-    @SerializedName("sodium")
-    private float sodium;
+    @SerializedName("proteins")
+    private float protein;
 
     public float getEnergy() {
         return energy;
@@ -21,7 +21,7 @@ public class Nutriments {
         return fat;
     }
 
-    public float getSodium() {
-        return sodium;
+    public float getProtein() {
+        return protein;
     }
 }
