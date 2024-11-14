@@ -28,14 +28,13 @@ public class ResultFragment extends Fragment {
     //change below back to upcCode when done testing
     private String upcCode;
 
-    private TextView barcodeInput;
     private TextView productName;
-    private TextView productCalories;
-    private TextView productFat;
-    private TextView productProtein;
-    private Button fetchButton;
+    private TextView servingSizeInput;
+    private TextView productCalories, productFat, productProtein, productCarbs;
+    private Button fetchButton, calculateButton;
+    private TextView barcodeInput;
 
-    private TextView textTextEdit;
+    private ProductResponse productResponse;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,7 +42,6 @@ public class ResultFragment extends Fragment {
         if (getArguments() != null) {
             upcCode = getArguments().getString("upc_code");
         }
-
     }
 
     @Override
@@ -52,27 +50,32 @@ public class ResultFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_result, container, false);
 
-        textTextEdit = view.findViewById(R.id.barcode_input);
+        barcodeInput = view.findViewById(R.id.barcode_input);
+        fetchButton = view.findViewById(R.id.fetch_button);
         productName = view.findViewById(R.id.product_name);
+        servingSizeInput = view.findViewById(R.id.serving_size);
+        calculateButton = view.findViewById(R.id.calculate_button);
         productCalories = view.findViewById(R.id.product_calories);
         productFat = view.findViewById(R.id.product_fat);
         productProtein = view.findViewById(R.id.product_protein);
-        fetchButton = view.findViewById(R.id.fetch_button);
+        productCarbs = view.findViewById(R.id.product_carbs);
+
         fetchButton.setOnClickListener(v -> fetchProductInfo());
+        calculateButton.setOnClickListener(v -> calculateNutrients());
 
         if (upcCode != null) {
-            textTextEdit.setText(upcCode);
+            barcodeInput.setText(upcCode);
             if (getActivity() instanceof AppCompatActivity) { // Set action bar to UPC
                 ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("upcCode");
             }
         } else {
-            textTextEdit.setText("No UPC code found");
+            barcodeInput.setText("No UPC code found");
         }
         return view;
     }
 
     private void fetchProductInfo() {
-        String barcode = textTextEdit.getText().toString();
+        String barcode = barcodeInput.getText().toString();
         if (!barcode.isEmpty()) {
             fetchFromApi(barcode);
         } else {
@@ -108,23 +111,44 @@ public class ResultFragment extends Fragment {
         });
     }
 
-    private void displayProductInfo(ProductResponse productResponse) {
-        if (productResponse != null && productResponse.getProduct() != null) {
+    private void displayProductInfo(ProductResponse response) {
+        if (response != null && response.getProduct() != null) {
+            productResponse = response; // Set productResponse here for later use in calculateNutrients
             productName.setText("Product Name: " + productResponse.getProduct().getName());
-
-            Nutriments nutriments = productResponse.getProduct().getNutriments();
-            if (nutriments != null) {
-                productCalories.setText("Calories: " + nutriments.getEnergy() + " kJ");
-                productFat.setText("Fat: " + nutriments.getFat() + " g");
-                productProtein.setText("Protein: " + nutriments.getProtein() + " g");
-            } else {
-                productCalories.setText("Nutriments not available");
-            }
         }
     }
 
-    public ResultFragment() {
-        // Required empty public constructor
-    }
 
+    private void calculateNutrients() {
+        if (productResponse != null && productResponse.getProduct().getNutriments() != null) {
+            try {
+                float servingSize = Float.parseFloat(servingSizeInput.getText().toString());
+
+                Nutriments nutriments = productResponse.getProduct().getNutriments();
+
+                // Nutrients per 100g
+                float caloriesPer100g = nutriments.getEnergy();
+                float proteinsPer100g = nutriments.getProtein();
+                float carbsPer100g = nutriments.getCarbs();
+                float fatsPer100g = nutriments.getFat();
+
+                // Calculate nutrients based on user input serving size
+                float caloriesConsumed = (caloriesPer100g / 100) * servingSize;
+                float proteinsConsumed = (proteinsPer100g / 100) * servingSize;
+                float carbsConsumed = (carbsPer100g / 100) * servingSize;
+                float fatsConsumed = (fatsPer100g / 100) * servingSize;
+
+                // Display the calculated values
+                productCalories.setText("Calories Consumed: " + caloriesConsumed + " kJ");
+                productProtein.setText("Proteins Consumed: " + proteinsConsumed + " g");
+                productCarbs.setText("Carbohydrates Consumed: " + carbsConsumed + " g");
+                productFat.setText("Fats Consumed: " + fatsConsumed + " g");
+
+            } catch (NumberFormatException e) {
+                Toast.makeText(getContext(), "Please enter a valid serving size", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(getContext(), "Nutrient data not available", Toast.LENGTH_SHORT).show();
+        }
+    }
 }

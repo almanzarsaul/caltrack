@@ -8,18 +8,12 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- User input for UPC -->
     <EditText
         android:id="@+id/barcode_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter barcode"
-        android:inputType="number" />
-
-    <EditText
-        android:id="@+id/serving_size"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter serving size"
         android:inputType="number" />
 
     <Button
@@ -28,12 +22,28 @@
         android:layout_height="wrap_content"
         android:text="Fetch Product Info" />
 
+    <!-- Display the product name -->
     <TextView
         android:id="@+id/product_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Product Name: "
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:paddingBottom="60dp"/>
+
+    <!-- Serving size input -->
+    <EditText
+        android:id="@+id/serving_size"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter serving size (g)"
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:id="@+id/calculate_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calculate Nutrients" />
 
     <TextView
         android:id="@+id/product_calories"
@@ -55,5 +65,20 @@
         android:layout_height="wrap_content"
         android:text="Protein: "
         android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/product_carbs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Carbohydrates: "
+        android:textSize="18sp"
+        android:paddingBottom="80dp"/>
+
+    <Button
+        android:id="@+id/update_daily_log_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Input into Daily Log"
+        android:layout_gravity="center"/>
 
 </LinearLayout>

@@ -13,6 +13,9 @@ public class Nutriments {
     @SerializedName("proteins")
     private float protein;
 
+    @SerializedName("carbohydrates")
+    private float carbs;
+
     public float getEnergy() {
         return energy;
     }
@@ -23,5 +26,9 @@ public class Nutriments {
 
     public float getProtein() {
         return protein;
+    }
+
+    public float getCarbs() {
+        return carbs;
     }
 }
