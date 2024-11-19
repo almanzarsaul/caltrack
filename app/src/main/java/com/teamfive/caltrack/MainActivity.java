@@ -2,12 +2,8 @@ package com.teamfive.caltrack;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentContainerView;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
@@ -30,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
 
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -49,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
             goalsRepository = new GoalsRepository(getApplication());
             goalsRepository.getActiveGoal().observe(this, goals -> {
                 if (goals != null) {
-                    Log.d("MainActivity", "Active goal found: " + goals.toString());
+                    Log.d("MainActivity", "Active goal found: " + goals);
                     // Navigate to HomeFragment
                     navController.navigate(R.id.navigation_home);
                     getSupportActionBar().show();

@@ -105,6 +105,7 @@
                 app:indicatorGoal="600"
                 android:layout_weight="1"
                 app:indicatorUnit="g"
+                app:indicatorColor="@color/protein"
                 />
 
             <com.teamfive.caltrack.views.ProgressIndicatorView
@@ -115,6 +116,7 @@
                 app:indicatorGoal="1000"
                 android:layout_weight="1"
                 app:indicatorUnit="g"
+                app:indicatorColor="@color/carbs"
                 />
 
             <com.teamfive.caltrack.views.ProgressIndicatorView
@@ -125,6 +127,7 @@
                 app:indicatorGoal="400"
                 android:layout_weight="1"
                 app:indicatorUnit="g"
+                app:indicatorColor="@color/fat"
                 />
 
         </LinearLayout>
@@ -136,7 +139,9 @@
             android:textColor="#DADADA"
             android:textAllCaps="true"
             android:textStyle="bold"
-            tools:ignore="HardcodedText" />
+            tools:ignore="HardcodedText"
+            android:layout_marginBottom="8dp"
+            />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/food_list"
             android:layout_width="match_parent"

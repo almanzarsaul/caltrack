@@ -2,10 +2,12 @@ package com.teamfive.caltrack.network.models;
 
 import com.google.gson.annotations.SerializedName;
 
-// ProductResponse.java
 public class ProductResponse {
+
+    @SerializedName("product")
     private Product product;
 
+    // Getters and Setters
     public Product getProduct() {
         return product;
     }
@@ -14,4 +16,3 @@ public class ProductResponse {
         this.product = product;
     }
 }
-

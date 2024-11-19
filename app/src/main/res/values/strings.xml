@@ -32,4 +32,7 @@
     <string name="save">Save</string>
     <string name="carbohydrates_g">Carbohydrates (g)</string>
     <string name="scan_barcode">Scan barcode</string>
+
+    <string name="calories_value_format">%d kcal</string>
+    <string name="macro_value_format">%dg</string>
 </resources>

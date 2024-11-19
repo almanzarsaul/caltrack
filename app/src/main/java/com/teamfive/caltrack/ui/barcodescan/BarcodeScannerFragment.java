@@ -36,6 +36,7 @@ import com.teamfive.caltrack.R;
 
 public class BarcodeScannerFragment extends Fragment {
     private static final String TAG = "BarcodeScannerFragment";
+    private final long BUTTON_DELAY = 500;
 
     private PreviewView previewView;
     private ProcessCameraProvider cameraProvider;
@@ -46,7 +47,10 @@ public class BarcodeScannerFragment extends Fragment {
     private Preview preview;
 
     private boolean hasNavigated = false;
-    private String currentUPC;
+    private String currentUPC = null;
+    private String lastDetectedUPC = null;
+    private long lastUpdateTime = 0;
+
 
     private final ActivityResultLauncher<String> requestPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
@@ -64,8 +68,6 @@ public class BarcodeScannerFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_barcode_scanner, container, false);
         previewView = view.findViewById(R.id.previewView);
-
-        // Find and hide navigation view
         if (getActivity() != null) {
             navView = getActivity().findViewById(R.id.nav_view);
             if (navView != null) {
@@ -78,11 +80,7 @@ public class BarcodeScannerFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        // Initialize barcode scanner
         barcodeScanner = BarcodeScanning.getClient();
-
-        // Setup overlay button
         overlayButton = view.findViewById(R.id.overlayButton);
         overlayButton.setOnClickListener(v -> {
             if (navView != null) {
@@ -94,7 +92,6 @@ public class BarcodeScannerFragment extends Fragment {
             }
         });
 
-        // Check camera permission
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
                 == PackageManager.PERMISSION_GRANTED) {
             startCamera();
@@ -120,25 +117,19 @@ public class BarcodeScannerFragment extends Fragment {
     private void bindCameraUseCases() {
         if (cameraProvider == null) return;
 
-        // Create and configure Preview use case
         preview = new Preview.Builder().build();
         preview.setSurfaceProvider(previewView.getSurfaceProvider());
 
-        // Create and configure ImageAnalysis use case
         imageAnalysis = new ImageAnalysis.Builder()
                 .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                 .build();
 
         setupImageAnalyzer();
 
-        // Select back camera
         CameraSelector cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA;
 
         try {
-            // Unbind any previous use cases
             cameraProvider.unbindAll();
-
-            // Bind new use cases to camera
             cameraProvider.bindToLifecycle(
                     getViewLifecycleOwner(),
                     cameraSelector,
@@ -188,21 +179,30 @@ public class BarcodeScannerFragment extends Fragment {
                     if (!isAdded()) {
                         return;
                     }
-
+                    long currentTime = System.currentTimeMillis();
                     if (barcodes.isEmpty()) {
-                        if (overlayButton != null) {
-                            overlayButton.setVisibility(View.GONE);
+                        if (currentTime - lastUpdateTime > BUTTON_DELAY) {
+
+                            if (overlayButton != null) {
+                                overlayButton.setVisibility(View.GONE);
+                                currentUPC = null;
+                                lastDetectedUPC = null;
+
+                            }
+                            lastUpdateTime = currentTime;
                         }
+
                     } else {
                         for (Barcode barcode : barcodes) {
                             if (barcode.getValueType() == Barcode.TYPE_PRODUCT) {
                                 String upc = barcode.getDisplayValue();
-                                if (upc != null && overlayButton != null) {
-                                    Log.d(TAG, "UPC Code: " + upc);
-                                    currentUPC = upc;
-                                    overlayButton.setText(upc);
-                                    overlayButton.setVisibility(View.VISIBLE);
-                                }
+
+                                Log.d(TAG, "UPC Code: " + upc);
+                                currentUPC = upc;
+                                lastUpdateTime = currentTime;
+                                lastDetectedUPC = upc;
+                                overlayButton.setText(currentUPC);
+                                overlayButton.setVisibility(View.VISIBLE);
                                 break;
                             }
                         }
@@ -210,6 +210,7 @@ public class BarcodeScannerFragment extends Fragment {
                 })
                 .addOnFailureListener(e -> {
                     if (isAdded() && overlayButton != null) {
+                        currentUPC = null;
                         overlayButton.setVisibility(View.GONE);
                     }
                 })
@@ -221,6 +222,20 @@ public class BarcodeScannerFragment extends Fragment {
         Bundle args = new Bundle();
         args.putString("upc_code", upc);
         navController.navigate(R.id.action_barcodeScannerFragment_to_resultFragment, args);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        cleanupCamera();
+
+        if (navView != null) {
+            navView.setVisibility(View.VISIBLE);
+        }
+
+        previewView = null;
+        overlayButton = null;
+        navView = null;
     }
 
     private void cleanupCamera() {
@@ -243,24 +258,9 @@ public class BarcodeScannerFragment extends Fragment {
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        cleanupCamera();
-
-        // Restore navigation view visibility
-        if (navView != null) {
-            navView.setVisibility(View.VISIBLE);
-        }
-
-        // Clear view references
-        previewView = null;
-        overlayButton = null;
-        navView = null;
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
         hasNavigated = false;
+        currentUPC = null; // Reset for fresh scanning session
     }
 }

@@ -4,5 +4,6 @@
         <attr name="indicatorProgress" format="integer" />
         <attr name="indicatorGoal" format="integer" />
         <attr name="indicatorUnit" format="string" />
+        <attr name="indicatorColor" format="color" />
     </declare-styleable>
 </resources>

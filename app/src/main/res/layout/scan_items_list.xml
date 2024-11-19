@@ -3,22 +3,21 @@
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="16dp"
-    android:background="@color/gray">
+    android:background="@drawable/item_rounded_background"
+    android:layout_marginBottom="8dp"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="16dp">
+        android:padding="8dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:orientation="vertical"
-            android:background="@color/white"
-            android:layout_marginStart="16dp">
-
+            android:background="@color/white">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -26,57 +25,77 @@
                 android:id="@+id/foodName"
                 android:text="Banana"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:id="@+id/foodCalories"
-                android:text="@string/default_calories"
+                android:id="@+id/calories_text"
                 android:textSize="17sp"
-                android:textStyle="italic"/>
+                android:textStyle="italic"
+                android:layout_marginBottom="8dp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/macro_circle_background"
+                    android:backgroundTint="@color/protein"
                     android:textColor="@color/white"
                     android:text="P"
                     android:gravity="center"
                     android:textSize="11sp"
-                    />
+                    android:layout_marginEnd="2dp" />
+
                 <TextView
+                    android:id="@+id/protein_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="100g"
-                    />
+                    android:layout_marginEnd="5dp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/macro_circle_background"
+                    android:backgroundTint="@color/carbs"
                     android:textColor="@color/white"
                     android:text="C"
                     android:gravity="center"
                     android:textSize="11sp"
-                    />
+                    android:layout_marginEnd="2dp" />
+
+                <TextView
+                    android:id="@+id/carbs_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100g"
+                    android:layout_marginEnd="5dp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/macro_circle_background"
+                    android:backgroundTint="@color/fat"
                     android:textColor="@color/white"
                     android:text="F"
                     android:gravity="center"
                     android:textSize="11sp"
-                    />
+                    android:layout_marginEnd="2dp" />
+
+                <TextView
+                    android:id="@+id/fat_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100g" />
 
             </LinearLayout>
-
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
-

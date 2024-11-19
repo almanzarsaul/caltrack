@@ -2,6 +2,9 @@ package com.teamfive.caltrack.views;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.LayerDrawable;
+import android.graphics.drawable.RotateDrawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
@@ -14,9 +17,9 @@ public class ProgressIndicatorView extends LinearLayout {
     private TextView title;
     private ProgressBar progressBar;
     private TextView goalValue;
-
     private TextView unitTextView;
     private TextView currentValue;
+    private int progressColor;
 
     public ProgressIndicatorView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -39,13 +42,27 @@ public class ProgressIndicatorView extends LinearLayout {
             int indicatorProgress = attributes.getInteger(R.styleable.ProgressIndicator_indicatorProgress, 0);
             int indicatorGoal = attributes.getInteger(R.styleable.ProgressIndicator_indicatorGoal, 100);
             String unit = attributes.getString(R.styleable.ProgressIndicator_indicatorUnit);
+            progressColor = attributes.getColor(R.styleable.ProgressIndicator_indicatorColor,
+                    context.getColor(android.R.color.holo_blue_dark)); // default color
 
             title.setText(indicatorTitle);
             progressBar.setProgress(indicatorProgress);
             goalValue.setText(String.valueOf(indicatorGoal));
             unitTextView.setText(unit);
+            setProgressColor(progressColor);
         } finally {
             attributes.recycle();
+        }
+    }
+
+    public void setProgressColor(int color) {
+        progressColor = color;
+        if (progressBar.getProgressDrawable() instanceof LayerDrawable) {
+            LayerDrawable layerDrawable = (LayerDrawable) progressBar.getProgressDrawable();
+            GradientDrawable progressDrawable = (GradientDrawable) ((RotateDrawable) layerDrawable.getDrawable(1)).getDrawable();
+            if (progressDrawable != null) {
+                progressDrawable.setColor(color);
+            }
         }
     }
 

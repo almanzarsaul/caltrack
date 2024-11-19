@@ -21,12 +21,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.teamfive.caltrack.R;
 
 public class CameraPermissionDenied extends Fragment {
 
     private Button returnToLogButton;
     private Button systemSettingsButton;
+    private BottomNavigationView navView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,11 +40,22 @@ public class CameraPermissionDenied extends Fragment {
         } else {
             Log.d("BarcodeScanner", "Camera permission denied.");
         }
+
+        navView = getActivity().findViewById(R.id.nav_view);
+
+        if (navView != null) {
+            navView.setVisibility(View.GONE);
+        }
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        navView = getActivity().findViewById(R.id.nav_view);
+
+        if (navView != null) {
+            navView.setVisibility(View.GONE);
+        }
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
             // If permission is granted, navigate up
             NavHostFragment.findNavController(this).navigateUp();
