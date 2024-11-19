@@ -1,6 +1,7 @@
 package com.teamfive.caltrack.ui.home;
 
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,17 +24,29 @@ public class FoodAdapter  extends RecyclerView.Adapter<FoodAdapter.FoodViewHolde
 
     static class FoodViewHolder extends RecyclerView.ViewHolder {
         private final TextView foodNameTextView;
+        private final TextView foodProteinTextView;
+        private final TextView foodCarbsTextView;
+        private final TextView foodFatTextView;
         private final TextView foodCaloriesTextView;
+        private Context context;
 
         public FoodViewHolder(View itemView) {
             super(itemView);
+            context = itemView.getContext();
             foodNameTextView = itemView.findViewById(R.id.foodName);
-            foodCaloriesTextView = itemView.findViewById(R.id.foodCalories);
+            foodCaloriesTextView = itemView.findViewById(R.id.calories_text);
+            foodProteinTextView = itemView.findViewById(R.id.protein_text);
+            foodCarbsTextView = itemView.findViewById(R.id.carbs_text);
+            foodFatTextView = itemView.findViewById(R.id.fat_text);
         }
 
         public void bind(FoodLog foodLog) {
             foodNameTextView.setText(foodLog.getName());
-            foodCaloriesTextView.setText(String.valueOf(foodLog.getCalories()));
+            foodCaloriesTextView.setText(context.getString(R.string.calories_value_format, foodLog.getCalories()));
+            foodProteinTextView.setText(context.getString(R.string.macro_value_format, foodLog.getProtein()));
+            foodCarbsTextView.setText(context.getString(R.string.macro_value_format, foodLog.getCarbs()));
+            foodFatTextView.setText(context.getString(R.string.macro_value_format, foodLog.getFat()));
+
         }
     }
 

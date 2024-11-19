@@ -35,6 +35,8 @@ dependencies {
     // The view calendar library for Android
     implementation libs.view
 
+    // Add this line
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
     implementation libs.appcompat
     implementation libs.material
     implementation libs.constraintlayout
@@ -49,7 +51,7 @@ dependencies {
     implementation libs.androidx.camera.camera2 // or the latest stable version
     implementation libs.androidx.camera.view
     implementation libs.androidx.camera.lifecycle
-    implementation libs.play.services.mlkit.barcode.scanning
+    implementation 'com.google.mlkit:barcode-scanning:17.3.0'
     implementation libs.image.labeling.common
     implementation libs.image.labeling.default.common
     testImplementation libs.junit

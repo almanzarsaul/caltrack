@@ -61,6 +61,8 @@ public class HomeFragment extends Fragment {
 
     private FloatingActionButton newFoodLogFAB;
 
+    private ImageButton editNoteButton;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +74,7 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        ImageButton editNoteButton = view.findViewById(R.id.editNoteButton);
+        editNoteButton = view.findViewById(R.id.editNoteButton);
         newFoodLogFAB = view.findViewById(R.id.new_log);
         newFoodLogFAB.setOnClickListener(v -> {
 
@@ -174,7 +176,7 @@ public class HomeFragment extends Fragment {
                     dailyLogMap.put(logDate, dailyLog);
                 }
                 setupCalendarDates();
-                updateUIForDate(today);
+                updateUIForDate(activeDate);
             }
         });
     }
