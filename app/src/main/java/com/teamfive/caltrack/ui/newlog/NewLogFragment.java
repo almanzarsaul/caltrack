@@ -56,7 +56,7 @@ public class NewLogFragment extends Fragment {
 
         saveLogButton.setOnClickListener(v -> {
             FoodLogRepository foodLogRepository = new FoodLogRepository(requireActivity().getApplication());
-            FoodLog foodLog = new FoodLog(foodNameInput.getText().toString(), Integer.parseInt(foodCaloriesInput.getText().toString()), Integer.parseInt(foodFatInput.getText().toString()), Integer.parseInt(foodCarbsInput.getText().toString()), Integer.parseInt(foodProteinInput.getText().toString()));
+            FoodLog foodLog = new FoodLog(foodNameInput.getText().toString(), Integer.parseInt(foodCaloriesInput.getText().toString()), Integer.parseInt(foodCarbsInput.getText().toString()), Integer.parseInt(foodFatInput.getText().toString()), Integer.parseInt(foodProteinInput.getText().toString()));
 
             foodLogRepository.insert(foodLog);
 
