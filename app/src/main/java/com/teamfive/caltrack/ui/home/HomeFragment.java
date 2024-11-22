@@ -228,6 +228,8 @@ public class HomeFragment extends Fragment {
         isDailyLogFetched = true;
         updateUI(0, 0, 0, 0);
 
+        updateButtonVisibility();
+
         homeViewModel.getFoodLogsByDate(Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant()))
                 .observe(getViewLifecycleOwner(), foodLogs -> {
                     foodAdapter.updateFoods(foodLogs);
@@ -260,6 +262,16 @@ public class HomeFragment extends Fragment {
             } else {
                 resetUI();
             }
+        }
+    }
+
+    private void updateButtonVisibility() {
+        if (activeDate.equals(today)) {
+            newFoodLogFAB.setVisibility(View.VISIBLE);
+            editNoteButton.setVisibility(View.VISIBLE);
+        } else {
+            newFoodLogFAB.setVisibility(View.GONE);
+            editNoteButton.setVisibility(View.GONE);
         }
     }
 
